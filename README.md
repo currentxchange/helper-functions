@@ -14,6 +14,7 @@ function getTu() { // Returns the current Time Unit
 
 // --- Calculate Everstone rewards based upon Staked PURPLE --- \\
 function rewardCalc(staked = 0){ 
+  if (staked < 1){return 0;}
   staked = parseInt(staked);
   let levels = [1,2,3,4,8,12,16,32,64,999999];
   let rewards = [1,3,5,7,16,30,48,144,432];
@@ -26,6 +27,21 @@ function rewardCalc(staked = 0){
   }
 }//END rewardCalc
 
+
+// --- Calculate Solar Disk rewards based upon Staked PURPLE --- \\
+function rewardCalcSolar(staked = 0){
+  staked = parseInt(staked);
+  if (staked < 1){return 0;}
+  let levels = [1,2,3,4,8,12,16,32,64,128,192,256];
+  let rewards = [24,48,72,96,120,144,168,192,216,240,264,288];
+  for (var i = 0; i < levels.length; i++) {
+    if (staked < levels[i])
+    {
+      return rewards[i];
+      break;
+    }
+  }
+}//END rewardCalcSolar
 
 // --- Calculate Everstone Level based upon Staked PURPLE --- \\
 function levelCalc(staked = 0){
